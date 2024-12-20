@@ -26,6 +26,7 @@ public class ArmDefaultCommand extends Command {
         if (m_controller.getRightBumper()) {
             m_armSystem.setArmSpeed(-m_controller.getRightY());
         }
+
         else {
             m_armSystem
                     .setArmSpeed(
