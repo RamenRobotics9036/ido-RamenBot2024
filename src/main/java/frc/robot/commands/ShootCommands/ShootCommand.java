@@ -8,40 +8,33 @@ import frc.robot.subsystems.IntakeSystem;
 import frc.robot.subsystems.ShooterSystem;
 
 public class ShootCommand extends Command {
-    private IntakeSystem m_intakeSystem;
-    private ShooterSystem m_shooterSystem;
+    Timer m_timer;
+    ShooterSystem m_ShooterSystem;
 
-    private Timer m_timer = new Timer();
+    public ShootCommand(/* IntakeSystem intake, */ ShooterSystem shooter) {
+        m_timer = new Timer();
+        m_ShooterSystem = shooter;
+        addRequirements(m_ShooterSystem);
 
-    public ShootCommand(IntakeSystem intake, ShooterSystem shooter) {
-        m_intakeSystem = intake;
-        m_shooterSystem = shooter;
-        addRequirements(m_intakeSystem, m_shooterSystem);
     }
 
     @Override
     public void initialize() {
-        m_timer.start();
+        m_timer.restart();
     }
 
     @Override
     public void execute() {
-        m_shooterSystem.setShootSpeed(ShooterConstants.shooterSpeed);
-        m_intakeSystem.setIntakeSpeed(IntakeConstants.intakeSpeed);
+        m_ShooterSystem.setShootSpeed(0.1);
     }
 
     @Override
     public boolean isFinished() {
-        // 2 is a dummy value. Please change it or divide speed by something later.
-        if (m_timer.get() >= 2) {
-            return true;
-        }
-        return false;
+        return (m_timer.get() > 2);
     }
 
     @Override
     public void end(boolean interrupted) {
-        m_shooterSystem.stopSystem();
-        m_intakeSystem.stopSystem();
+        m_ShooterSystem.stopSystem();
     }
 }

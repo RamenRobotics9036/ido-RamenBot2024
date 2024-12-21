@@ -38,6 +38,7 @@ import frc.robot.commands.SetArmToAngleCommand;
 import frc.robot.commands.ShootCommandTele;
 import frc.robot.commands.StayCommand;
 import frc.robot.commands.ShootCommands.ChargeShootCommand;
+import frc.robot.commands.ShootCommands.ShootCommand;
 import frc.robot.subsystems.ArmSystem;
 import frc.robot.subsystems.HookSystem;
 import frc.robot.subsystems.IntakeSystem;
@@ -231,7 +232,9 @@ public class RobotContainer {
                         new RevCommandAmp(m_intakeSystem, m_shooterSystem, m_armController,
                                 0.7)));
 
-        // Amp Preset
+        new Trigger(() -> m_driveController.getAButton()).onTrue(
+                new ShootCommand(m_shooterSystem));
+
         new Trigger(() -> m_armController.getXButton()).onTrue(
                 new SetArmToAngleCommand(m_armSystem, PresetConstants.ampPresetAngleRadians));
 
