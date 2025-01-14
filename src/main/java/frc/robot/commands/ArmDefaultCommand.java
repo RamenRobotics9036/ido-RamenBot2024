@@ -27,9 +27,9 @@ public class ArmDefaultCommand extends Command {
             m_armSystem.setArmSpeed(-m_controller.getRightY());
         }
         else {
-            m_armSystem
-                    .setArmSpeed(
-                            -ArmConstants.armSpeedFast * Math.signum(m_controller.getRightY()));
+            m_armSystem.setArmSpeed(
+                    -ArmConstants.armSpeedFast * Math.signum(
+                            m_controller.getRightY()));
         }
     }
 
