@@ -31,6 +31,7 @@ public class ArmSystem extends SubsystemBase {
             ArmConstants.armEncoderChannel);
     private AppliedController m_controller;
     private RelativeEncoder m_relativeEncoder = m_armMotorLeader.getEncoder();
+    private double m_desiredAngle;
 
     private final TargetAngle m_targetAngle = new TargetAngle(VisionConstants.angleLookUpTable);
 
@@ -55,6 +56,7 @@ public class ArmSystem extends SubsystemBase {
 
         m_relativeEncoder.setPositionConversionFactor((Math.PI * 2) / ArmConstants.gearRatio);
         m_relativeEncoder.setPosition(getArmAngleRadians());
+        m_desiredAngle = getArmAngleRadians();
     }
 
     public void toTeleop() {
@@ -124,4 +126,13 @@ public class ArmSystem extends SubsystemBase {
     public void stopSystem() {
         m_armMotorLeader.stopMotor();
     }
+
+    public void setDesiredAngle() {
+        m_desiredAngle = 1.14;
+    }
+
+    public double getDesiredAngle() {
+        return m_desiredAngle;
+    }
+
 }
