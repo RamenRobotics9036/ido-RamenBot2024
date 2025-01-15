@@ -108,6 +108,14 @@ public class ArmSystem extends SubsystemBase {
         return m_armMotorLeader.get();
     }
 
+    public void setDesiredAngle(double angle) {
+        m_desiredAngle = angle;
+    }
+
+    public double getDesiredAngle() {
+        return m_desiredAngle;
+    }
+
     @Override
     public void periodic() {
     }
@@ -125,14 +133,6 @@ public class ArmSystem extends SubsystemBase {
      */
     public void stopSystem() {
         m_armMotorLeader.stopMotor();
-    }
-
-    public void setDesiredAngle() {
-        m_desiredAngle = 1.14;
-    }
-
-    public double getDesiredAngle() {
-        return m_desiredAngle;
     }
 
 }
